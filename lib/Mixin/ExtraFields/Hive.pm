@@ -1,4 +1,3 @@
-
 use strict;
 use warnings;
 
@@ -13,13 +12,13 @@ Mixin::ExtraFields::Hive - infest your objects with hives
 
 =head1 VERSION
 
-version 0.003
+version 0.004
 
  $Id: Hive.pm 28691 2007-04-03 00:14:59Z rjbs $
 
 =cut
 
-our $VERSION = '0.003';
+our $VERSION = '0.004';
 
 =head1 SYNOPSIS
 
@@ -66,8 +65,8 @@ These methods are:
 
 =cut
 
-use Data::Hive;
-use Data::Hive::Store::Param;
+use Data::Hive 1.001;
+use Data::Hive::Store::Param 1.001;
 
 # I wish this was easier. -- rjbs, 2006-12-09
 use Sub::Exporter -setup => {
@@ -106,22 +105,25 @@ sub _build_hive_method {
   my $id_method = $arg->{id_method};
   my $moniker   = ${ $arg->{moniker} };
 
-  my $mutate_method = $self->method_name('mutate', $moniker);
-  my $exists_method = $self->method_name('exists', $moniker);
-  my $delete_method = $self->method_name('delete', $moniker);
+  my %store_args = (
+    method => $self->method_name('mutate', $moniker),
+  );
+
+  for my $which (qw(exists delete)) {
+    my $method_name = $self->method_name($which, $moniker);
+
+    $store_args{ $which } = sub { $_[0]->param_store->$method_name($_[1]) };
+  }
 
   sub {
     my ($self) = @_;
     my $id = $self->$$id_method;
+
     # We should really get around to caching these in some awesome way.
     # -- rjbs, 2006-12-09
     Data::Hive->NEW({
       store_class => 'Param',
-      store_args  => [ $self, {
-        method => $mutate_method,
-        exists => $exists_method,
-        delete => $delete_method,
-      } ],
+      store_args  => [ $self, \%store_args ],
     });
   }
 }
