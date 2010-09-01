@@ -1,5 +1,10 @@
 Changelog for Mixin-ExtraFields-Hive
 
+0.005     2010-09-01
+          run the standard Data::Hive::Test suite
+
+          fix failures from the above: KEYS, and the *_ALL methods now work
+
 0.004     2010-08-31
           updated for Data::Hive 1.001
 

@@ -84,17 +84,24 @@ sub _build_mutate_method {
   my $driver    = $arg->{driver};
   my $driver_set = $self->driver_method_name('set');
   my $driver_get = $self->driver_method_name('get');
+  my $driver_all = $self->driver_method_name('get_all');
 
   return sub {
     my $self = shift;
-    my $name = shift;
     my $id = $self->$$id_method;
 
-    if (@_) {
-      my $value = shift @_;
-      $$driver->$driver_set($self, $id, $name, $value);
+
+    if (@_ == 0) {
+      my %all = $$driver->$driver_all($self, $id);
+      return keys %all;
+    } elsif (@_ == 1) {
+      my ($name) = @_;
+      return $$driver->$driver_get($self, $id, $name);
+    } elsif (@_ == 2) {
+      my ($name, $value) = @_;
+      return $$driver->$driver_set($self, $id, $name, $value);
     } else {
-      $$driver->$driver_get($self, $id, $name);
+      Carp::confess 'too many arguments passed to hive mutator';
     }
   };
 }

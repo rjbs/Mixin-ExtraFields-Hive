@@ -2,7 +2,9 @@
 use strict;
 use warnings;
 
-use Test::More tests => 12;
+use Test::More 0.88;
+
+use Data::Hive::Test;
 
 require_ok('Mixin::ExtraFields::Hive');
 
@@ -70,3 +72,12 @@ is(
   undef,
   "after emptying the hive, there's nothing there again",
 );
+
+{
+  my $object = $test_class->new;
+  my $hive   = $object->hive;
+
+  Data::Hive::Test->test_existing_hive($hive);
+}
+
+done_testing;
