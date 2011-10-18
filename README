@@ -1,9 +1,0 @@
-README for Mixin-ExtraFields-Hive
-
-To install:
-
-  perl Makefile.PL
-  make test
-  sudo make install
-
-Consult the POD for further documentation.

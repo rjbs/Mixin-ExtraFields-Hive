@@ -3,20 +3,9 @@ use warnings;
 
 package Mixin::ExtraFields::Hive;
 use base qw(Mixin::ExtraFields);
+# ABSTRACT: infest your objects with hives
 
 use 5.006;
-
-=head1 NAME
-
-Mixin::ExtraFields::Hive - infest your objects with hives
-
-=head1 VERSION
-
-version 0.005
-
- $Id: Hive.pm 28691 2007-04-03 00:14:59Z rjbs $
-
-=cut
 
 our $VERSION = '0.005';
 
@@ -159,23 +148,10 @@ sub method_name {
   return "_$method\_$moniker";
 }
 
-=head1 AUTHOR
-
-This code was written by Ricardo SIGNES.  His work in 2006 was sponsored by
-Listbox.
-
-=head1 COPYRIGHT AND LICENSE
-
-Copyright (C) 2006, Ricardo SIGNES.  This code is free software, and is
-available under the same terms as perl itself.
-
 =head1 TODO
 
-=over
-
-=item * provide a customizable means to cache created Data::Hive objects
-
-=back
+=for :list
+* provide a customizable means to cache created Data::Hive objects
 
 =cut
 

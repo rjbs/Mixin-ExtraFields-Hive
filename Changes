@@ -1,5 +1,8 @@
 Changelog for Mixin-ExtraFields-Hive
 
+{{$NEXT}}
+          repackage to provide unbroken META data
+
 0.005     2010-09-01
           run the standard Data::Hive::Test suite
 
