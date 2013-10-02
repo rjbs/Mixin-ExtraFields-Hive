@@ -1,6 +1,7 @@
 Changelog for Mixin-ExtraFields-Hive
 
 {{$NEXT}}
+          repackage to provide updated META data
 
 0.006     2011-10-18 14:07:12 America/New_York
           repackage to provide unbroken META data

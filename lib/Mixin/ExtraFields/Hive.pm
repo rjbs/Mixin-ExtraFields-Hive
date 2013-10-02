@@ -2,12 +2,9 @@ use strict;
 use warnings;
 
 package Mixin::ExtraFields::Hive;
-use base qw(Mixin::ExtraFields);
+use Mixin::ExtraFields 0.002 ();
+use parent qw(Mixin::ExtraFields);
 # ABSTRACT: infest your objects with hives
-
-use 5.006;
-
-our $VERSION = '0.005';
 
 =head1 SYNOPSIS
 
@@ -54,7 +51,7 @@ These methods are:
 
 =cut
 
-use Data::Hive 1.001;
+use Data::Hive 1.006;
 use Data::Hive::Store::Param 1.001;
 
 # I wish this was easier. -- rjbs, 2006-12-09
