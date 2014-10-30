@@ -76,7 +76,6 @@ sub _build_mutate_method {
     my $self = shift;
     my $id = $self->$$id_method;
 
-
     if (@_ == 0) {
       my %all = $$driver->$driver_all($self, $id);
       return keys %all;
