@@ -1,10 +1,8 @@
-use strict;
-use warnings;
-
 package Mixin::ExtraFields::Hive;
+# ABSTRACT: infest your objects with hives
+
 use Mixin::ExtraFields 0.002 ();
 use parent qw(Mixin::ExtraFields);
-# ABSTRACT: infest your objects with hives
 
 =head1 SYNOPSIS
 
